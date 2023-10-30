@@ -7,12 +7,13 @@ const getPatients = () : Patient[] => {
 };
 
 const getNonSensPatient = () : NonSensPatient[] => {
-  return patients.map(({id, name, dateOfBirth, gender, occupation}) => ({
+  return patients.map(({ id, name, dateOfBirth, gender, occupation, entries }) => ({
     id,
     name,
     dateOfBirth,
     gender,
-    occupation
+    occupation,
+    entries
   }));
 };
 
