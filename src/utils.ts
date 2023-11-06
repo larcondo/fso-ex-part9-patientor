@@ -139,12 +139,12 @@ const parseSsn = (ssn: unknown): string => {
 };
 
 const parseDescription = (description: unknown): string => {
-  if (!isString(description)) throw new Error('Incorrect or missing description');
+  if (!isString(description) || description === '') throw new Error('Incorrect or missing description');
   return description;
 };
 
 const parseSpecialist = (specialist: unknown): string => {
-  if (!isString(specialist)) throw new Error('Incorrect or missing specialist');
+  if (!isString(specialist) || specialist === '') throw new Error('Incorrect or missing specialist');
   return specialist;
 };
 
@@ -152,8 +152,8 @@ const parseDischarge = (discharge: unknown): Discharge => {
   if (!discharge || typeof discharge !== 'object') throw new Error('Incorrect or missing discharge');
 
   if ('date' in discharge && 'criteria' in discharge) {
-    if (!isString(discharge.date)) throw new Error('Incorrect or missing discharge date');
-    if (!isString(discharge.criteria)) throw new Error('Incorrect or missing discharge criteria');
+    if (!isString(discharge.date) || !isDate(discharge.date)) throw new Error('Incorrect or missing discharge date');
+    if (!isString(discharge.criteria) || discharge.criteria === '') throw new Error('Incorrect or missing discharge criteria');
 
     return {
       date: discharge.date,
